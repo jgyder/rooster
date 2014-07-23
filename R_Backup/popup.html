@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Distill Menu Popup</title>
+    <link rel='stylesheet' type='text/css' href='ui/css/common.css'></link>
+    <link rel='stylesheet' type='text/css' href='ui/css/popup.css'></link>
+    <style> body { min-height: 360px } .hide{display:none;}</style>
+  </head>
+  <body>
+    <div id='msg'>
+      <span class='content'></span>
+    </div>
+    <div id='actions'>
+    </div>
+    <div id='unread' class='block'>
+      <div class='xheader'>
+        <h4>
+          <a class='xinbox' href='#' >Watchlist</a>
+          <small>
+            <span class='right'>
+              <a href='#' class='btn xmarkread' title='Mark all as read'>
+                <i class='icon-ok'></i>
+              </a>
+              <a href='#' class='btn xrefresh' title='Check all for changes'>
+                <i class='icon-refresh'></i>
+              </a>
+            <span>
+          </small>
+        </h4>
+      </div>
+      <ul id='update-list' class='content'>
+      </ul>
+      <h5>Items for current page</h5>
+      <ul id='alert-list' class='content'>
+      </ul>
+    </div>
+    <div id='actions' class='actions'>
+      <a class='btn btn-primary xfeed hide' href='#'>
+        <i class="icon-rss"></i>
+        Subscribe to Feed
+      </a>
+      <a class='btn btn-primary xsel' href='#'>Select Elements to Watch</a> 
+      <a class='btn xwatch' href='#'> Watch Page</a>
+
+      <a id='btn-active' class='btn xtoggle' href='#'>
+        <span class='active'>Suspend Checks</span>
+        <span class='inactive'><b>Resume Checks</b></span>
+      </a>
+    </div>
+
+    <script src='lib/domo.js'></script>
+    <script src='lib/underscore.js'></script>
+    <script src='lib/jquery.js'></script>
+    <script src='lib/async.js'></script>
+    <script src='popup.js'></script>
+
+  </body>
+</html>

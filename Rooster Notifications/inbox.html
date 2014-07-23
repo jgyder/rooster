@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Watchlist - Rooster</title>
+    <link href="ui/css/common.css" rel="stylesheet" class="media">
+    <link href="ui/css/index.css" rel="stylesheet" class="media">
+    <link rel="shortcut icon" href="ui/img/favicon.ico">
+    <style>.hide { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div id="topbar" class="navbar">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a href="/" class="brand">
+            <img src="ui/img/distill_logo.png" style="margin-top:-6px;width:80px;">
+            <small style="vertical-align:bottom;"></small>
+          </a>
+          <ul class="nav">
+            <form class='form-search' style='padding-top: 8px;margin-left: 60px;'>
+              <div class='input-append'>
+                <input name='q' class='span3 search-query' type='text'/>
+                <button type='submit' class='btn'>
+                  <i class='icon-search'></i>
+                </button>
+              </div>
+            </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="msg" class="container-fluid xmsgbox" style="width:100%;">
+        <span class="xmsg">Loading</span>
+        <span style="display:none;" class="xerror"></span>
+      </div>
+
+      <div id="content" class="hide">
+
+        <div class="xsidebar" style="width:160px;">
+          <h3>
+            <a class='btn btn-success' data-action='sieve add'>Add Webpage</a>
+          </h3>
+          <ul class="nav nav-list">
+            <li class="active" ><a href='#' data-path='inbox'>All</a></li>
+            <li><a href='#' data-path='unread'>Unread</a></li>
+            <li><a href='#' data-path='trash'>Trash</a></li>
+            <li class="nav-header">Labels</li>
+            <li class="divider"></li>
+            <li><a href='#' class='btn' data-action='nav label add'>Add Label</a></li> </ul>
+        </div>
+
+        <div class="xcontainer">
+          <div id="list" class="xblock xblock-thin"></div>
+          <hr>
+          <footer>
+          </footer>
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src='lib/require.js'></script>
+    <script src='inbox.js'></script>
+  </body>
+</html>

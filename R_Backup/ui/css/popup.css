@@ -1,0 +1,52 @@
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 300px;
+}
+
+#msg {
+  text-align: center;
+  height: 0;
+}
+
+#msg > .content {
+  background-color: #ff9;
+  color: #000;
+}
+
+#actions {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  width: 278px;
+}
+
+#actions > * {
+  display: block;
+  margin-top: 4px;
+}
+
+.error {
+  color: red;
+}
+
+#tab-title {
+  white-space: nowrap;
+}
+
+.block {
+  padding: 10px;
+}
+
+.block > .content {
+}
+
+#btn-active.active > .inactive {
+  display: none;
+}
+
+#btn-active.inactive > .active {
+  display: none;
+}
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <title>Visual Selector</title>
+    
+    <link href="ui/css/common.css" rel="stylesheet" class="media"/>
+    <link href="ui/css/selector.css" rel="stylesheet" class="media"/>
+    <style>.hide { visibility: hidden; } body { overflow: auto}</style>
+
+  </head>
+
+  <body class="">
+    <div class="navbar navbar-inverse container-fluid">
+      <ul class="nav">
+        <li>
+          <button
+            class="btn btn-success btn-slim"
+            id="a_toggle_selection_mode"
+            action="toggleSelector">
+            <i class="icon-play"/>
+            Select Elements
+          </button>
+        </li>
+      </ul>
+      <a href="htmlselector.xhtml" class="brand centered">Visual Selector</a>
+      <ul class="nav right">
+        <li>
+          <button
+            action="save"
+            class="btn btn-slim btn-primary">
+            <i class="icon-save"/>
+            Save Selections
+          </button>
+        </li>
+        <li>
+          <!-- TODO i18n -->
+          <a id="a_expand_size" href="#" action="toggleExpanded" title="Expand/Collapse  View">
+            <i/>
+          </a>
+        </li>
+        <li>
+          <a href="#" action="close"><i class="icon-remove" title="Close Visual Selector"/></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="selectortree" >
+    </div>
+
+    <div id="a_expand_tree" class="hide xvsplitter" role="button" action="toggleTree">
+      <i class="icon-chevron-right"/>
+    </div>
+
+
+    <div id="selections">
+      <div id="config">
+      </div>
+    </div>
+    <textarea id="preview" placeholder="Select elements to see preview of selected text here"/>
+
+    <script src='lib/require.js'></script>
+    <script src='htmlselector.js'> </script>
+
+  </body>
+</html>

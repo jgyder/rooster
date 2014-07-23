@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Watchlist - Rooster</title>
+    <link href="ui/css/common.css" rel="stylesheet" class="media">
+    <link href="ui/css/index.css" rel="stylesheet" class="media">
+    <link rel="shortcut icon" href="ui/img/favicon.ico">
+    <style>.hide { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div id="topbar" class="navbar">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a href="/" class="brand">
+            <img src="ui/img/distill_logo.png" style="margin-top:-6px;width:80px;">
+            <small style="vertical-align:bottom;"></small>
+          </a>
+          <ul class="nav">
+            <form class='form-search' style='padding-top: 8px;margin-left: 60px;'>
+              <div class='input-append'>
+                <input name='q' class='span3 search-query' type='text'/>
+                <button type='submit' class='btn'>
+                  <i class='icon-search'></i>
+                </button>
+              </div>
+            </form>
+          </ul>
+          <ul class="nav right">
+            <li class="settings dropdown">
+              <a id='a_settings' href="#" class="">Settings</a>
+            </li>
+            <li>
+              <a href="https://play.google.com/store/apps/details?id=com.neemb.sieve"
+                target="_blankj"
+                style="">
+                Install Android App <span style="color: #d11;font-size:10px;vertical-align:top;">Free</span>
+              </a>
+            </li>
+            <li>
+              <a href="http://distill.freshdesk.com" target="_blank">Help?</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="msg" class="container-fluid xmsgbox" style="width:100%;">
+        <span class="xmsg">Loading</span>
+        <span style="display:none;" class="xerror"></span>
+      </div>
+
+      <div id="content" class="hide">
+
+        <div class="xsidebar" style="width:160px;">
+          <h3>
+            <a class='btn btn-success' data-action='sieve add'>Add Webpage</a>
+          </h3>
+          <ul class="nav nav-list">
+            <li class="active" ><a href='#' data-path='inbox'>All</a></li>
+            <li><a href='#' data-path='unread'>Unread</a></li>
+            <li><a href='#' data-path='trash'>Trash</a></li>
+            <li class="nav-header">Labels</li>
+            <li class="divider"></li>
+            <li><a href='#' class='btn' data-action='nav label add'>Add Label</a></li> </ul>
+        </div>
+
+        <div class="xcontainer">
+          <div id="list" class="xblock xblock-thin"></div>
+          <hr>
+          <footer>
+            <div class="connect">Connect:<ul class="social"><li><a href="https://twitter.com/distill_io" target="_blank" class="icon-twitter icon-social">Twitter</a></li><li><a href="https://www.facebook.com/distillweb" target="_blank" class="icon-facebook icon-social">Facebook</a></li><li><a href="https://plus.google.com/114751872755687263869/" target="_blank" class="icon-googleplus icon-social">Google+ </a></li></ul></div>
+            <p class="centered">&copy;<a href='http://distill.io'>Distill</a> 2014</p>
+          </footer>
+        </div>
+
+      </div>
+
+      <div id="tododemo" tabindex="-1" role="dialog" class="modal fade hide">
+        <div class="modal-header">
+          <h3>Coming Soon!</h3>
+        </div>
+        <div class="modal-body">
+          <p>Requested action or feature is not available yet. We are working hard to bring to you very soon.</p>
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-primary">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+    <script src='lib/require.js'></script>
+    <script src='inbox.js'></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+define(['common/view'],
+function(View2) {
+
+var
+SearchForm = View.PreRenderedForm.extend({
+
+  name: 'SearchForm',
+
+  fields: [{ name: 'q', type: 'text' }],
+
+  postInit: function() {
+    this.model || (this.model = new Backbone.Model());
+    Register.__super__.postInit.apply(this, arguments);
+  },
+
+  submit: function() {
+    var
+    self = this,
+    btn = this.$el.find('[type=submit]'),
+    model = this.model,
+    data = model.toJSON();
+
+    console.log('register form data:', data);
+
+    btn.button('loading');
+    Msg.info('l_loading');
+    $.ajax({
+      url: _.isEmpty(data.invite_id) ?  '/register' : '/register_invite',
+      type: 'POST',
+      data: data,
+      error: function() {
+        btn.button('reset');
+        console.log('error:', arguments);
+        Msg.error('Registration failed. Please check input parameters and try again.');  // TODO i18n
+      },
+      success: function(user) {
+        Msg.reset();
+        btn.button('reset');
+        console.log('success');
+        self.trigger('done', user, model, this);
+      }
+    });
+    return false;
+  }
+
+});
+
+return SearchForm;
+});

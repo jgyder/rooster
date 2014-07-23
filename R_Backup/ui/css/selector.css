@@ -1,0 +1,137 @@
+@namespace xul url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+html {
+  background-color: #fff;
+}
+
+.navbar {
+  background-image: linear-gradient(to bottom, #222222, #111111);
+  padding-left: 10px;
+  padding-right: 0;
+  margin: 0;
+}
+
+.navbar a {
+  padding: 5px !important;
+  margin: 0 0 0 10px;
+  background-color: transparent;
+  color: #bbb !important;
+}
+
+.btn-slim {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: 5px;
+  margin-left: 5px;
+}
+
+.navbar .btn-slim {
+  margin-top: 4px;
+}
+
+.brand {
+  position: fixed;
+  left: 50%;
+  margin-left: -120px !important;
+}
+
+.navbar a:hover, .navbar a:focus {
+  color: #fff !important;
+}
+
+#selections {
+  position: fixed;
+  top: 30px;
+  left: 10px;
+  right: 31%;
+  bottom: 0;
+  padding-top: 5px;
+  padding-left: 5px;
+  overflow: auto;
+}
+
+#preview {
+  position: fixed;
+  width: 30%;
+  height: 96%;
+  top: 30px;
+  right: 0;
+}
+
+#preview > textarea {
+  width: 96%;
+}
+
+.selectortree {
+  position: fixed;
+  visibility: hidden;
+  top: 30px;
+  left: 0;
+  bottom: 0;
+  width: 0;
+}
+
+.selectortree > xul|tree {
+  width: 100%;
+  height: 100%;/*80%; Expose when tree selection works*/
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+} 
+
+xul|treechildren::-moz-tree-checkbox {
+  list-style-image: none;
+}
+
+xul|treechildren::-moz-tree-checkbox(checked) {
+  list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
+}
+
+.selectortree > textarea {
+  border: none;
+  width: 100%;
+  height: 0; /*20%;  Expose when tree selection works*/
+  margin: 0;
+  padding: 0;
+}
+
+.xvsplitter {
+  position: fixed;
+  left: 0;
+  top: 30px;
+  bottom: 0;
+
+  width: 8px;
+  height: 100%;
+
+  color: #aaa;
+  background-color: rgba(204, 204, 204, .2);
+  border-right: solid 1px #999;
+
+  cursor: pointer;
+  z-index: 2;
+}
+
+.xvsplitter:hover {
+  background-color: rgba(204, 204, 204, .4);
+  color: #666;
+}
+
+/* State when tree is visible. */
+body.tree #selections {
+  left: 33%;
+}
+
+body.tree .selectortree {
+  border: none;
+  width: 33%;
+  visibility: visible;
+}
+
+body.tree .xvsplitter {
+  left: 33%;
+  margin-left: -8px;
+}
+

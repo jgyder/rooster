@@ -203,11 +203,13 @@ var NotifyAudio = (function() {
 
   return {
     play: function(cfg) {
+    	var dismissed = false;
+    	
       console.log('NotifyAudio:', cfg);
       var player = new Audio;
       player.src = (cfg && cfg.config && cfg.config.tone) || defaultSrc();
-      player.play();
-	  /*chrome.notifications.create(
+
+	  chrome.notifications.create(
         'id1',{   
             type:"basic",
             title:"Hello",
@@ -215,11 +217,21 @@ var NotifyAudio = (function() {
             iconUrl:"../../ui/img/distill_128.png"
         },
 
-        function() { 
-
+	function(notifyid) { 
+		var myVar = setTimeout(function(){
+			player.play()	
+		}, 5000);
+        	chrome.notifications.onClosed.addListener(notifyid, function(){
+        		clearTimeout(myVar);
+        	});
+        		
+        		
+        		
+	}
+		
         } 
 
-    );*/
+    );
     }
   }
 })();

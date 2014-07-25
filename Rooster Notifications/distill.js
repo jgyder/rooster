@@ -207,6 +207,19 @@ var NotifyAudio = (function() {
       var player = new Audio;
       player.src = (cfg && cfg.config && cfg.config.tone) || defaultSrc();
       player.play();
+	  /*chrome.notifications.create(
+        'id1',{   
+            type:"basic",
+            title:"Hello",
+            message:"world",
+            iconUrl:"../../ui/img/distill_128.png"
+        },
+
+        function() { 
+
+        } 
+
+    );*/
     }
   }
 })();
@@ -219,7 +232,20 @@ var NotifyPopup = (function() {
       popup = null;
     },
     show: function(cfg, context) {
-      console.log('Actions:popup:show', cfg, context);
+	chrome.notifications.create(
+        'id1',{   
+            type:"basic",
+            title:"Hello",
+            message:"world",
+            iconUrl:"../../ui/img/distill_128.png"
+        },
+
+        function() { 
+
+        } 
+
+    );
+      /*console.log('Actions:popup:show', cfg, context);
 
       // Add message to list of messages to be shown to user. Once popup is
       // shown, it will pull message and display it to the user.
@@ -237,7 +263,7 @@ var NotifyPopup = (function() {
         body = context.sieve_data.text;
 
         body = body.length > 70 ? body.substring(0, 70) + '...' : body;
-        popup = webkitNotifications.createNotification('/ui/img/distill_48.png',
+        popup = chrome.notifications.create('/ui/img/distill_48.png',
           title, body);
         popup.onclose = function() {
           if(popup) {
@@ -245,13 +271,26 @@ var NotifyPopup = (function() {
             popup = null;
           }
         }
+		chrome.notifications.create(
+        'id1',{   
+            type:"basic",
+            title:"Hello",
+            message:"world",
+            iconUrl:"../../ui/img/distill_128.png"
+        },
+
+        function() { 
+
+        } 
+
+    );
         popup.onclick = function()  {
           service.show(context.sieve.id, function() {
             popup.cancel();
           });
         }
         popup.show();
-      });
+      });*/
     }
   }
 })();

@@ -195,6 +195,8 @@ function getHostname(url) {
 }
 
 ;
+var pendingNotifications = {};
+var clears = {};
 var NotifyAudio = (function() {
   function defaultSrc() {
     // TODO read values from preferences
@@ -209,8 +211,9 @@ var NotifyAudio = (function() {
       var player = new Audio;
       player.src = (cfg && cfg.config && cfg.config.tone) || defaultSrc();
 
-	  chrome.notifications.create(
-        'id1',{   
+
+	  /*
+	  chrome.notifications.create("rooster",{   
             type:"basic",
             title:"Hello",
             message:"world",
@@ -220,16 +223,95 @@ var NotifyAudio = (function() {
 
 	function(notifyid) { 
 		var myVar = setInterval(function(){
-			player.play()	
+			//player.play()	
 		}, 5000);
-        	chrome.notifications.onClosed.addListener(notifyid, function(){
-        	
-					//clearTimeout(myVar);
-			
-        	});
+
 		
         });
+		*/
+		
+		
+		    var dateStr = new Date().toUTCString();
+    var details = {
+        type:    "basic",
+        iconUrl: "../../ui/img/distill_128.png",
+        title:   "REMINDER",
+        message: dateStr + "\n\n"
+                 + "There is one very important matter to attend to !\n"
+                 + "Deal with it now ?",
+        contextMessage: "Very important stuff..."
+    };
+		    var listeners = {
+        onButtonClicked: function(btnIdx) {
+            if (btnIdx === 0) {
+                console.log(dateStr + ' - Clicked: "yes"');
+            } else if (btnIdx === 1) {
+                console.log(dateStr + ' - Clicked: "no"');
+            }
+        },
+        onClicked: function() {
+            console.log(dateStr + ' - Clicked: "message-body"');
+        },
+        onClosed: function(byUser) {
+
+            console.log(dateStr + ' - Closed: '
+                        + (byUser ? 'by user' : 'automagically (!?)'));
+        }
+    };
+	
+	
+						/* Create a notification and store references
+						 * of its "re-spawn" timer and event-listeners */
+						function createNotification(details, listeners, notifId) {
+							(notifId !== undefined) || (notifId = "");
+							chrome.notifications.create(notifId, details, function(id) {
+								console.log('Created notification "' + id + '" !');
+								if (pendingNotifications[id] !== undefined) {
+									clearTimeout(pendingNotifications[id].timer);
+								}
+
+								pendingNotifications[id] = {
+									listeners: listeners,
+									timer: setTimeout(function() {
+										console.log('Re-spawning notification "' + id + '"...');
+										destroyNotification(id, function(wasCleared) {
+											if (wasCleared) {
+												createNotification(details, listeners, id);
+											}
+										});
+									}, 10000)
+								};
+								clears[id] = setInterval(function(){
+									player.play();
+								}, 5000);
+							});
+						}
+
+						/* Completely remove a notification, cancelling its "re-spawn" timer (if any)
+						 * Optionally, supply it with a callback to execute upon successful removal */
+						function destroyNotification(notifId, callback) {
+
+							/* Cancel the "re-spawn" timer (if any) */
+							if (pendingNotifications[notifId] !== undefined) {
+								clearTimeout(pendingNotifications[notifId].timer);
+								clearInterval(clears[notifId]);
+								delete(pendingNotifications[notifId]);
+							}
+
+							/* Remove the notification itself */
+							chrome.notifications.clear(notifId, function(wasCleared) {
+								console.log('Destroyed notification "' + notifId + '" !');
+
+								/* Execute the callback (if any) */
+								callback && callback(wasCleared);
+							});
+						}
+						
+						createNotification(details, listeners);
+
     }
+	
+
   }
 })();
 
@@ -241,19 +323,6 @@ var NotifyPopup = (function() {
       popup = null;
     },
     show: function(cfg, context) {
-	chrome.notifications.create(
-        'id1',{   
-            type:"basic",
-            title:"Hello",
-            message:"world",
-            iconUrl:"../../ui/img/distill_128.png"
-        },
-
-        function() { 
-
-        } 
-
-    );
       /*console.log('Actions:popup:show', cfg, context);
 
       // Add message to list of messages to be shown to user. Once popup is

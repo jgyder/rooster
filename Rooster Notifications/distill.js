@@ -224,14 +224,8 @@ var NotifyAudio = (function() {
         	chrome.notifications.onClosed.addListener(notifyid, function(){
         		clearTimeout(myVar);
         	});
-        		
-        		
-        		
-	}
 		
-        } 
-
-    );
+        });
     }
   }
 })();

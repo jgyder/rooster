@@ -232,14 +232,26 @@ var NotifyAudio = (function() {
 		
 		
 		    var dateStr = new Date().toUTCString();
+			
+			var textArray = [
+				'Close this notification to hit rooster with shovel.',
+				'Close this notification to throw rooster into grinder.',
+				'Close this notification to eat rooster for dinner.',
+				'Close this notification to make rooster walk the plank.',
+				'Close this notification to send rooster to retirement home.',
+				'Close this notification to send rooster accross busy freeway.'
+			];
+var randomNumber = Math.floor(Math.random()*textArray.length);
+
+			
     var details = {
         type:    "basic",
         iconUrl: "../../ui/img/distill_128.png",
-        title:   "REMINDER",
+        title:   "ZOMG ROOSTER",
         message: dateStr + "\n\n"
-                 + "There is one very important matter to attend to !\n"
-                 + "Deal with it now ?",
-        contextMessage: "Very important stuff..."
+                 + "The page changed!\n"
+                 + textArray[randomNumber],
+        contextMessage: ""
     };
 		    var listeners = {
         onButtonClicked: function(btnIdx) {

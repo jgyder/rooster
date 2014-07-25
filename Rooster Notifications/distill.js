@@ -234,12 +234,10 @@ var NotifyAudio = (function() {
 		    var dateStr = new Date().toUTCString();
 			
 			var textArray = [
-				'Close this notification to hit rooster with shovel.',
-				'Close this notification to throw rooster into grinder.',
-				'Close this notification to eat rooster for dinner.',
+				'Close this notification to send rooster to Foster Farms.',
+				'Close this notification to politely tell rooster to shush.',
 				'Close this notification to make rooster walk the plank.',
-				'Close this notification to send rooster to retirement home.',
-				'Close this notification to send rooster accross busy freeway.'
+				'Close this notification to send rooster to retirement home.'
 			];
 var randomNumber = Math.floor(Math.random()*textArray.length);
 

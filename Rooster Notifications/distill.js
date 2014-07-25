@@ -214,15 +214,18 @@ var NotifyAudio = (function() {
             type:"basic",
             title:"Hello",
             message:"world",
-            iconUrl:"../../ui/img/distill_128.png"
+            iconUrl:"../../ui/img/distill_128.png",
+			priority:2
         },
 
 	function(notifyid) { 
-		var myVar = setTimeout(function(){
+		var myVar = setInterval(function(){
 			player.play()	
 		}, 5000);
         	chrome.notifications.onClosed.addListener(notifyid, function(){
-        		clearTimeout(myVar);
+        	
+					//clearTimeout(myVar);
+			
         	});
 		
         });
